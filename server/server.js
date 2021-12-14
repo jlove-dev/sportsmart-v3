@@ -3,9 +3,10 @@ const bodyParser = require('body-parser');
 const http = require('http');
 const mongoose = require('mongoose');
 const dbConfig = require('./config/database.config');
-const routes = require('./routes/base.route');
-
 const app = express();
+
+//Routes
+const routes = require('./routes/base.route');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
