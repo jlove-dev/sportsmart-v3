@@ -1,27 +1,38 @@
 # SportsmartV3
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.1.
+### Requirements
 
-## Development server
+1) [NodeJS](https://nodejs.org/en/)
+2) [Angular](https://angular.io/cli)
+3) [MongoDB](https://docs.mongodb.com/manual/installation/)
+   1) It's recommended to run this as a service so you don't have to start Mongo everytime
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Running
 
-## Code scaffolding
+Clone or fork this repo into your local environment. Start by changing directories into it such as:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+`cd c:/sportsmart-v3`
 
-## Build
+Then, run `npm install`. This will install all the Angular libraries required.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Following that, you need to install the NodeJS server libraries. Change directories into the server:
 
-## Running unit tests
+`cd c:/sportsmart-v3/server`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Then, run `npm install`. 
 
-## Running end-to-end tests
+Once installed, and MongoDB is running in the background, simply run: 
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+`npm run dev`
 
-## Further help
+This will concurrently run the NodeJS backend API & the Angular frontend.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Future
+
+This project is in development. The hope is to remake the current VBS version of the application so it's more future proof.
+
+### Contributors
+
+[Josh Love](https://github.com/JoshLove-portfolio)
+
+[Ryan Greenman](https://github.com/rgreenman)
