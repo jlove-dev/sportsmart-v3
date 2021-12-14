@@ -6,24 +6,22 @@ export interface Seller {
   address: string,
   city: string,
   state: string,
-  zipCode: string,
-  salesFigures: salesFigures,
-  items: itemsTotal
+  zipCode: string
 }
 
-interface salesFigures {
-    totalSold: number,
-    vendorCut: number,
-    troopCut: number
-}
-
-interface itemsTotal {
-    active: [items],
-    sold: [items]
-}
-
-interface items {
-    barCode: string,
-    category: string,
-    price: string
-}
+// interface salesFigures {
+//     totalSold: number,
+//     vendorCut: number,
+//     troopCut: number
+// }
+//
+// interface itemsTotal {
+//     active: [items],
+//     sold: [items]
+// }
+//
+// interface items {
+//     barCode: string,
+//     category: string,
+//     price: string
+// }

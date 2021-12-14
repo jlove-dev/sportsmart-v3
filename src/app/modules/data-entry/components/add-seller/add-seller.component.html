@@ -1,46 +1,47 @@
-<form name="sellerForm">
+<form #sellerForm="ngForm" (ngSubmit)="onSubmit(sellerForm)">
   <div class="row">
     <div class="form-group col-md-3">
       <label for="vendorID">Vendor ID</label>
-      <input name="vendorID" type="text" class="form-control" id="vendorID" placeholder="000000">
+      <input name="vendorID" type="text" class="form-control" id="vendorID" placeholder="000000" [(ngModel)]="seller.vendorID">
     </div>
     <div class="form-group col-md-3">
       <label for="phoneNum">Phone Number</label>
-      <input name="phoneNum" type="text" class="form-control" id="phoneNum" placeholder="###-###-####">
+      <input name="phoneNum" type="text" class="form-control" id="phoneNum" placeholder="###-###-####" [(ngModel)]="seller.phoneNum">
     </div>
   </div>
   <div class="row">
     <div class="form-group col-md-3">
       <label for="firstName">First Name</label>
-      <input name="firstName" type="text" class="form-control" id="firstName" placeholder="John">
+      <input name="firstName" type="text" class="form-control" id="firstName" placeholder="John" [(ngModel)]="seller.firstName">
     </div>
     <div class="form-group col-md-3">
       <label for="lastName">Last Name</label>
       <!--                name is superrrrrrrrr important for form post-->
-      <input name="lastName" type="text" class="form-control" id="lastName" placeholder="Smith">
+      <input name="lastName" type="text" class="form-control" id="lastName" placeholder="Smith" [(ngModel)]="seller.lastName">
     </div>
   </div>
   <div class="row">
     <div class="form-group col-md-6">
       <label for="address">Address</label>
-      <input name="address" type="text" class="form-control" id="address" placeholder="123 Main Street">
+      <input name="address" type="text" class="form-control" id="address" placeholder="123 Main Street" [(ngModel)]="seller.address">
     </div>
   </div>
   <div class="row">
     <div class="form-group col-md-3">
       <label for="city">City</label>
-      <input name="city" type="text" class="form-control" id="city" placeholder="Delmar">
+      <input name="city" type="text" class="form-control" id="city" placeholder="Delmar" [(ngModel)]="seller.city">
     </div>
     <div class="form-group col-md-2">
       <label for="state">State</label>
-      <input name="state" type="text" class="form-control" id="state" placeholder="NY">
+      <input name="state" type="text" class="form-control" id="state" placeholder="NY" [(ngModel)]="seller.state">
     </div>
     <div class="form-group col-md-1">
       <div class="form-group">
         <label for="zipCode">Zip Code</label>
-        <input name="zipCode" type="text" class="form-control" id="zipCode" placeholder="12054">
+        <input name="zipCode" type="text" class="form-control" id="zipCode" placeholder="12054" [(ngModel)]="seller.zipCode">
       </div>
     </div>
   </div>
   <button class="btn btn-primary" style="margin-top: 1%">Submit</button>
+  <pre>{{ getSeller() }}</pre>
 </form>
