@@ -11,7 +11,8 @@ const routes = require('./routes/base.route');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use('/api', routes);
+//Main route
+app.use('/sellers', routes);
 
 mongoose.connect(dbConfig.url).then(() => {
   console.log('Connected to DB')
