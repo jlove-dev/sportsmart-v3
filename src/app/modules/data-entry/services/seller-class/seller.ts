@@ -1,37 +1,29 @@
-export class Seller {
-  constructor(
-    vendorID: string,
-    phoneNum: string,
-    firstName: string,
-    lastName: string,
-    address: string,
-    city: string,
-    state: string,
-    zipCode: string,
-    salesFigures: salesFigures,
-    items: itemTotals
-  ) {}
+export interface Seller {
+  vendorID: string,
+  phoneNum: string,
+  firstName: string,
+  lastName: string,
+  address: string,
+  city: string,
+  state: string,
+  zipCode: string,
+  salesFigures: salesFigures,
+  items: itemsTotal
 }
 
-export class salesFigures {
-  constructor(
+interface salesFigures {
     totalSold: number,
     vendorCut: number,
     troopCut: number
-  ){}
 }
 
-export class itemTotals {
-  constructor(
+interface itemsTotal {
     active: [items],
     sold: [items]
-  ){}
 }
 
-export class items {
-  constructor(
+interface items {
     barCode: string,
     category: string,
     price: string
-  ) {}
 }

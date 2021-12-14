@@ -11,7 +11,9 @@ const addSeller = async(req, res) => {
     address: req.body.address,
     city: req.body.city,
     state: req.body.state,
-    zipCode: req.body.zipCode
+    zipCode: req.body.zipCode,
+    salesFigures: req.body.salesFigures,
+    items: req.body.items,
   }),
     (err, seller) => {
       if(err) {
