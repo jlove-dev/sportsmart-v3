@@ -1,5 +1,7 @@
 # SportsmartV3
 
+MEAN stack application
+
 ### Requirements
 
 1) [NodeJS](https://nodejs.org/en/)
