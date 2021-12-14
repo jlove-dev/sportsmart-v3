@@ -6,7 +6,7 @@ import {SellItemComponent} from "./modules/point-of-sale/components/sell-item/se
 
 const routes: Routes = [
   {path: '', component: HomeScreenComponent},
-  {path: 'data-entry', component: AddSellerComponent},
+  {path: 'add-seller', component: AddSellerComponent},
   {path: 'point-of-sale', component: SellItemComponent}
 ];
 

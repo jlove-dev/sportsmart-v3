@@ -5,20 +5,24 @@ import { AddItemComponent } from './components/add-item/add-item.component';
 import { FindVendorComponent } from './components/find-vendor/find-vendor.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import {RouterModule} from "@angular/router";
+import { DataEntryNavHeaderComponent } from './components/data-entry-nav-header/data-entry-nav-header.component';
 
 @NgModule({
     declarations: [
         AddSellerComponent,
         AddItemComponent,
-        FindVendorComponent
+        FindVendorComponent,
+        DataEntryNavHeaderComponent
     ],
     exports: [
         AddSellerComponent
     ],
-    imports: [
-        CommonModule,
-        HttpClientModule,
-        FormsModule
-    ]
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+    RouterModule
+  ]
 })
 export class DataEntryModule { }
