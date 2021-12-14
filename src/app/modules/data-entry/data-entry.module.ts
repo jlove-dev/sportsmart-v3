@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AddSellerComponent } from './components/add-seller/add-seller.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { FindVendorComponent } from './components/find-vendor/find-vendor.component';
-
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -16,7 +15,8 @@ import { FindVendorComponent } from './components/find-vendor/find-vendor.compon
         AddSellerComponent
     ],
     imports: [
-        CommonModule
+        CommonModule,
+        HttpClientModule
     ]
 })
 export class DataEntryModule { }

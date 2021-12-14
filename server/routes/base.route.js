@@ -1,14 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const items = require('./items');
+const items = require('./items'); //child
 
-router.get('/', function(req, res) {
-  res.send('API works!');
-});
+//Import controllers
+const sellersController = require('../controllers/seller.controller');
 
-router.get('/:vendorID', function(req, res) {
+router.route('/').post(sellersController.addSeller);
+
+//Add a new vendor
+router.route('/:vendorID').get(function(req, res) {
   res.send(`Found vendor #${req.params.vendorID}`);
-})
+});
 
 //child route
 router.use('/:vendorID/items', items);

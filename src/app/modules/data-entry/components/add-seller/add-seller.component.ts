@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from "../../services/api.service";
 
 @Component({
   selector: 'app-add-seller',
@@ -7,13 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddSellerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
-  ngOnInit(): void {
+  private seller = {
+    vendorID: "-1",
+    phoneNum: "20",
+    firstName:  "Joe",
+    lastName: "schmo",
+    address: "123 main",
+    city: "yogaville",
+    state: "VA",
+    zipCode: "11111",
   }
 
-  test() {
-    console.log('hit test');
+  //FIXME  - Had to add CORS proxy for this to work - need to investigate
+  ngOnInit(): void {
+    this.apiService.createSeller(this.seller).subscribe(() => {
+      console.log(`Created seller: ${this.seller.firstName}`);
+    })
   }
 
 }
