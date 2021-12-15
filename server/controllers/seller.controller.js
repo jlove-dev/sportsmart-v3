@@ -39,11 +39,12 @@ const findSeller = async(req, res) => {
 };
 
 const addItem = async(req, res) => {
+  console.log(req)
   model.updateOne({vendorID: req.params.vendorID},
     {
       $push: {
         'items.active': {
-          barcode: req.body.barcode,
+          barCode: req.body.barCode,
           category: req.body.category,
           price: req.body.price
         }

@@ -10,6 +10,8 @@ import {ApiService} from "../../services/api.service";
 })
 export class FindVendorComponent implements OnInit {
 
+  //FIXME - there's some issues with how this functions. If the VendorID is invalid on the API, it does funny things
+
   constructor(private apiService: ApiService) { }
 
   seller: Seller = {

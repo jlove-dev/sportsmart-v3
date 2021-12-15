@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Seller} from "../../../../shared/seller-class/seller";
+import { items} from "../../../../shared/item-class/item";
 import {FormControl, FormGroup, NgForm} from "@angular/forms";
+import { ApiService } from "../../services/api.service";
 
 @Component({
   selector: 'app-add-item',
@@ -9,19 +10,26 @@ import {FormControl, FormGroup, NgForm} from "@angular/forms";
 })
 export class AddItemComponent implements OnInit {
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   firstForm = new FormGroup({
     vendorID: new FormControl(''),
   });
 
+  //These forms are asserted to be not null fields
+  //FIXME - investigate best practice here
   secondForm = new FormGroup({
-    // @ts-ignore
-    vendorID: this.firstForm.get('vendorID').value,
+    vendorID: new FormControl(''),
     itemID: new FormControl(''),
     itemCode: new FormControl(''),
     price: new FormControl('')
   })
+
+  item: items = {
+    barCode: '',
+    category: '',
+    price: ''
+}
 
   vendorID = null;
 
@@ -32,6 +40,7 @@ export class AddItemComponent implements OnInit {
 
   clearID(){
     this.firstForm.setValue({vendorID: ''});
+    this.secondForm.reset();
     this.vendorID = null;
     this.vendorAdded = false;
   }
@@ -44,10 +53,27 @@ export class AddItemComponent implements OnInit {
     this.vendorAdded = true;
     // @ts-ignore
     this.vendorID = this.firstForm.get('vendorID').value;
+    this.secondForm.patchValue({vendorID: this.firstForm.get('vendorID')!.value});
   }
 
   getStatus(){
     return this.vendorAdded;
+  }
+
+  setItem() {
+    this.item.barCode = this.secondForm.get('itemID')!.value;
+    this.item.category = this.secondForm.get('itemCode')!.value;
+    this.item.price = this.secondForm.get('price')!.value;
+  }
+
+  submitItem() {
+
+    this.setItem();
+
+    this.apiService.addItem(this.vendorID!, this.item).subscribe(() => {
+      console.log('Added item');
+    })
+    this.secondForm.reset();
   }
 
 }

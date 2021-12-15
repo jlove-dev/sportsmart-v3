@@ -10,34 +10,34 @@
 </form>
 
 <ng-template #elseBlock>
-  <form [formGroup]="secondForm">
-<!--    FIXME - this doesn't work-->
+  <form [formGroup]="secondForm" (ngSubmit)="submitItem()">
     <button class="btn btn-primary col-md-1" style="margin-top: 1%" (click)="secondForm.reset()">Reset Form</button>
     <a routerLink="/add-item" class="btn btn-primary col-md-1 offset-1" style="margin-top: 1%" (click)="clearID()">Back</a>
     <div class="row">
       <div class="form-group col-md-3">
         <label>Vendor ID</label>
-        <input id="vendorID" class="form-control" placeholder="000000" value="{{vendorID}}" readonly>
+        <input class="form-control" placeholder="000000" value="{{vendorID}}" readonly>
       </div>
     </div>
     <!--        FIXME - There's some issues here with lining up the columns? -->
     <div class="row">
       <div class="form-group col-md-3">
         <label>Item ID</label>
-        <input type="text" class="form-control" formControlName="itemID" placeholder="000000">
+        <input class="form-control" formControlName="itemID" placeholder="000000">
       </div>
     </div>
     <div class="row">
       <div class="form-group col-md-3">
         <label>Item Code</label>
-        <input type="text" class="form-control" formControlName="itemCode" placeholder="0">
+        <input class="form-control" formControlName="itemCode" placeholder="0">
       </div>
     </div>
     <div class="row">
       <div class="form-group col-md-3">
         <label>Price</label>
-        <input type="text" class="form-control" formControlName="price" placeholder="$1.00">
+        <input class="form-control" formControlName="price" placeholder="$1.00">
       </div>
     </div>
+    <button class="btn btn-primary col-md-3" style="margin-top: 1%">Submit</button>
   </form>
 </ng-template>
