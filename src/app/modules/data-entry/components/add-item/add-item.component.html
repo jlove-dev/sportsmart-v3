@@ -1,18 +1,18 @@
 <app-data-entry-nav-header></app-data-entry-nav-header>
-<form *ngIf="getStatus() == false; else elseBlock" (ngSubmit)="onVendorSubmit()">
+<form [formGroup]="firstForm" *ngIf="getStatus() == false; else elseBlock" (ngSubmit)="onVendorSubmit()">
   <div class="row">
     <div class="form-group col-md-3">
       <label>Vendor ID</label>
-      <input name="vendorID" type="text" class="form-control" placeholder="000000" [(ngModel)]="vendorID">
+      <input formControlName="vendorID" type="text" class="form-control" placeholder="000000">
     </div>
     <button class="btn btn-primary col-md-3" style="margin-top: 1%">Submit</button>
   </div>
 </form>
 
 <ng-template #elseBlock>
-  <form #submitItemForm="ngForm">
+  <form [formGroup]="secondForm">
 <!--    FIXME - this doesn't work-->
-    <button class="btn btn-primary col-md-1" style="margin-top: 1%" (click)="requestReset(submitItemForm)">Reset Form</button>
+    <button class="btn btn-primary col-md-1" style="margin-top: 1%" (click)="secondForm.reset()">Reset Form</button>
     <a routerLink="/add-item" class="btn btn-primary col-md-1 offset-1" style="margin-top: 1%" (click)="clearID()">Back</a>
     <div class="row">
       <div class="form-group col-md-3">
@@ -24,19 +24,19 @@
     <div class="row">
       <div class="form-group col-md-3">
         <label>Item ID</label>
-        <input type="text" class="form-control" id="barcode" placeholder="000000">
+        <input type="text" class="form-control" formControlName="itemID" placeholder="000000">
       </div>
     </div>
     <div class="row">
       <div class="form-group col-md-3">
         <label>Item Code</label>
-        <input type="text" class="form-control" id="itemCode" placeholder="0">
+        <input type="text" class="form-control" formControlName="itemCode" placeholder="0">
       </div>
     </div>
     <div class="row">
       <div class="form-group col-md-3">
         <label>Price</label>
-        <input type="text" class="form-control" id="price" placeholder="$1.00">
+        <input type="text" class="form-control" formControlName="price" placeholder="$1.00">
       </div>
     </div>
   </form>

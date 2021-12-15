@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Seller} from "../../../../shared/seller-class/seller";
-import {NgForm} from "@angular/forms";
+import {FormControl, FormGroup, NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-add-item',
@@ -11,7 +11,19 @@ export class AddItemComponent implements OnInit {
 
   constructor() { }
 
-  vendorID = "";
+  firstForm = new FormGroup({
+    vendorID: new FormControl(''),
+  });
+
+  secondForm = new FormGroup({
+    // @ts-ignore
+    vendorID: this.firstForm.get('vendorID').value,
+    itemID: new FormControl(''),
+    itemCode: new FormControl(''),
+    price: new FormControl('')
+  })
+
+  vendorID = null;
 
   vendorAdded = false;
 
@@ -19,29 +31,19 @@ export class AddItemComponent implements OnInit {
   }
 
   clearID(){
-    this.vendorID = "";
+    this.firstForm.setValue({vendorID: ''});
+    this.vendorID = null;
     this.vendorAdded = false;
   }
 
   onVendorSubmit(){
-    if (this.vendorID === "") {
+    // @ts-ignore
+    if(this.firstForm.get('vendorID').value === ''){
       return
     }
     this.vendorAdded = true;
-    console.log('vendorID:', this.vendorID);
-  }
-
-  //FIXME - doesn't work
-  requestReset(form: NgForm){
-    console.log('requesting reset')
-    try {
-      form.resetForm(this.vendorID);
-    } catch(e) {
-      console.log(e);
-    }
     // @ts-ignore
-    //FIXME - better way to do this?
-    //document.getElementById("vendorID").value = this.vendorID;
+    this.vendorID = this.firstForm.get('vendorID').value;
   }
 
   getStatus(){
