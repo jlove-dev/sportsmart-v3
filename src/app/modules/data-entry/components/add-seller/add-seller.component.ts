@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from "../../services/api.service";
 import { Seller } from "../../services/seller-class/seller";
-import {FormGroup, NgForm} from '@angular/forms';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-add-seller',

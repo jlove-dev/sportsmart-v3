@@ -1,1 +1,54 @@
-<p>find-vendor works!</p>
+<app-data-entry-nav-header></app-data-entry-nav-header>
+<form #findVendorForm="ngForm" (ngSubmit)="onSubmit(findVendorForm)">
+  <div class="row">
+    <div class="form-group col-md-3">
+      <label for="vendorID">Vendor ID</label>
+      <input name="id" type="text" class="form-control" id="vendorID" placeholder="000000" [(ngModel)]="seller.vendorID">
+    </div>
+    <button class="btn btn-primary col-md-3" style="margin-top: 1%">Submit</button>
+  </div>
+</form>
+<div *ngIf="dataPresent()">
+  <div class="row">
+    <div class="form-group col-md-3">
+      <label>Vendor ID</label>
+      <p>{{seller.vendorID}}</p>
+    </div>
+    <div class="form-group col-md-3">
+      <label>Phone Number</label>
+      <p>{{seller.phoneNum}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-3">
+      <label>First Name</label>
+      <p>{{seller.firstName}}</p>
+    </div>
+    <div class="form-group col-md-3">
+      <label>Last Name</label>
+      <p>{{seller.lastName}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label>Address</label>
+      <p>{{seller.address}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-3">
+      <label>City</label>
+      <p>{{seller.city}}</p>
+    </div>
+    <div class="form-group col-md-2">
+      <label>State</label>
+      <p>{{seller.state}}</p>
+    </div>
+    <div class="form-group col-md-1">
+      <div class="form-group">
+        <label>Zip Code</label>
+        <p>{{seller.zipCode}}</p>
+      </div>
+    </div>
+  </div>
+</div>

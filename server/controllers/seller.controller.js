@@ -23,8 +23,22 @@ const addSeller = async(req, res) => {
         return res.status(200).json(seller);
       }
     }
+};
+
+const findSeller = async(req, res) => {
+  model.find({vendorID: req.query.vendorID})
+    .exec((err, seller) => {
+      if(!seller) {
+        return res.status(404).json({"message": "Seller not found"});
+      } else if (err) {
+        return res.status(404).json(err);
+      } else {
+        return res.status(200).json(seller);
+      }
+    })
 }
 
 module.exports = {
-  addSeller
+  addSeller,
+  findSeller
 }

@@ -15,4 +15,11 @@ export class ApiService {
   public createSeller(seller: Seller) {
     return this.httpClient.post(`${this.apiURL}`, seller);
   }
+
+  public getSeller(vendorID: string) {
+    let param = {
+      vendorID: vendorID
+    };
+    return this.httpClient.get(`${this.apiURL}`, {params: param});
+  }
 }
