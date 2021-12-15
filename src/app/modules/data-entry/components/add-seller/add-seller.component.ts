@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from "../../services/api.service";
-import { Seller } from "../../services/seller-class/seller";
+import { Seller } from "../../../../shared/seller-class/seller";
 import {NgForm} from '@angular/forms';
 
 @Component({

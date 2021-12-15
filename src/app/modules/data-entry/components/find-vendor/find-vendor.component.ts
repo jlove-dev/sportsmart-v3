@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import {Seller} from "../../services/seller-class/seller";
+import {Seller} from "../../../../shared/seller-class/seller";
 import {ApiService} from "../../services/api.service";
 
 @Component({
@@ -28,7 +28,6 @@ export class FindVendorComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     this.apiService.getSeller(this.seller.vendorID).subscribe((data: any) => {
-      console.log('Data got: ', data);
       this.seller = data[0];
     })
     form.resetForm();

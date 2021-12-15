@@ -1,1 +1,43 @@
-<p>add-item works!</p>
+<app-data-entry-nav-header></app-data-entry-nav-header>
+<form *ngIf="getStatus() == false; else elseBlock" (ngSubmit)="onVendorSubmit()">
+  <div class="row">
+    <div class="form-group col-md-3">
+      <label>Vendor ID</label>
+      <input name="vendorID" type="text" class="form-control" placeholder="000000" [(ngModel)]="vendorID">
+    </div>
+    <button class="btn btn-primary col-md-3" style="margin-top: 1%">Submit</button>
+  </div>
+</form>
+
+<ng-template #elseBlock>
+  <form #submitItemForm="ngForm">
+<!--    FIXME - this doesn't work-->
+    <button class="btn btn-primary col-md-1" style="margin-top: 1%" (click)="requestReset(submitItemForm)">Reset Form</button>
+    <a routerLink="/add-item" class="btn btn-primary col-md-1 offset-1" style="margin-top: 1%" (click)="clearID()">Back</a>
+    <div class="row">
+      <div class="form-group col-md-3">
+        <label>Vendor ID</label>
+        <input id="vendorID" class="form-control" placeholder="000000" value="{{vendorID}}" readonly>
+      </div>
+    </div>
+    <!--        FIXME - There's some issues here with lining up the columns? -->
+    <div class="row">
+      <div class="form-group col-md-3">
+        <label>Item ID</label>
+        <input type="text" class="form-control" id="barcode" placeholder="000000">
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-3">
+        <label>Item Code</label>
+        <input type="text" class="form-control" id="itemCode" placeholder="0">
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-3">
+        <label>Price</label>
+        <input type="text" class="form-control" id="price" placeholder="$1.00">
+      </div>
+    </div>
+  </form>
+</ng-template>

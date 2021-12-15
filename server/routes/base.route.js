@@ -7,6 +7,8 @@ const sellersController = require('../controllers/seller.controller');
 
 router.route('/').get(sellersController.findSeller).post(sellersController.addSeller);
 
+router.route('/:vendorID').put(sellersController.addItem);
+
 //child route
 router.use('/:vendorID/items', items);
 

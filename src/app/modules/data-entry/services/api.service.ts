@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Seller } from './seller-class/seller';
+import { Seller } from '../../../shared/seller-class/seller';
+import { items } from '../../../shared/item-class/item';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,9 @@ export class ApiService {
       vendorID: vendorID
     };
     return this.httpClient.get(`${this.apiURL}`, {params: param});
+  }
+
+  public addItem(vendorID: string, item: items){
+    return this.httpClient.put(`${this.apiURL}/${vendorID}`, item);
   }
 }
