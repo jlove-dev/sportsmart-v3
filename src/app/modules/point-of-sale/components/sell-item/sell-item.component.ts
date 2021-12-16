@@ -43,23 +43,22 @@ export class SellItemComponent implements OnInit {
     //FIXME - on a bad barCode, it 404's. It then doesn't assign a value to the message interface
     //FIXME - thus, still adds to the array which it doesn't
     this.apiService.getItem(this.item.barCode).subscribe(response => {
+      console.log(response);
       this.message['text'] = response;
+      if (this.message['text']['message'] === 'true'){
+        this.itemsArray.push(
+          {
+            price: this.item.price,
+            category: this.item.category,
+            barCode: this.item.barCode
+          }
+        );
+        this.resetInterface()
+        form.resetForm();
+      }
+    }, error => {
+      console.log(error);
     });
-
-    if (this.message['text']['message'] === 'true'){
-      this.itemsArray.push(
-        {
-          price: this.item.price,
-          category: this.item.category,
-          barCode: this.item.barCode
-        }
-      );
-      this.resetInterface()
-      form.resetForm();
-    } else {
-      this.resetInterface();
-      form.resetForm();
-    }
   };
 
   buildReceipt() {
