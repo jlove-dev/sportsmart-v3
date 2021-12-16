@@ -46,7 +46,7 @@ export class SellItemComponent implements OnInit {
       this.message['text'] = response;
     });
 
-    if (this.message['text']['message'] !== 'false'){
+    if (this.message['text']['message'] === 'true'){
       this.itemsArray.push(
         {
           price: this.item.price,
