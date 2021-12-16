@@ -1,0 +1,24 @@
+<div class="col-md-6">
+  <table>
+    <thead>
+    <tr>
+      <th>Barcode</th>
+      <th>Category</th>
+      <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let entry of itemsArray">
+<!--      These doesn't show up correctly in IntelliJ - I wonder why-->
+      <th>{{entry.barCode}}</th>
+      <th>{{entry.category}}</th>
+      <td>{{entry.price}}
+        <button class="btn btn-primary">Update</button>
+      </td>
+      <td>
+        <button class="btn btn-primary">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

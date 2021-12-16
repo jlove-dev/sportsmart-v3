@@ -12,14 +12,17 @@ mongoose.set('debug', true);
 require('./models/seller.model');
 
 //Routes
-const routes = require('./routes/base.route');
+const dataEntryRoutes = require('./routes/data-entry.base.route');
+const posRoutes = require('./routes/pos.base.route');
+
 
 app.use(bodyParser.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 
 //Main route
-app.use('/sellers', routes);
+app.use('/sellers', dataEntryRoutes);
+app.use('/pos', posRoutes)
 
 //mongo running
 mongoose.connect(dbConfig.url).then(() => {

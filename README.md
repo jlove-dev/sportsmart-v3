@@ -21,7 +21,9 @@ Following that, you need to install the NodeJS server libraries. Change director
 
 `cd c:/sportsmart-v3/server`
 
-Then, run `npm install`. 
+Then, run `npm install`. You also specifically need to install concurrently:
+
+`npm install concurrently`
 
 Once installed, and MongoDB is running in the background, simply run: 
 

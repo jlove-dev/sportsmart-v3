@@ -6,7 +6,7 @@ import { items } from '../../../shared/item-class/item';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class DataApiService {
 
   //This will likely need to change as more route are added
   apiURL: string = 'http://localhost:8000/sellers'

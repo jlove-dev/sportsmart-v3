@@ -1,3 +1,5 @@
+import {salesFigures} from "../sales-figures-class/sales-figures";
+
 export interface Seller {
   vendorID: string,
   phoneNum: string,
@@ -6,5 +8,6 @@ export interface Seller {
   address: string,
   city: string,
   state: string,
-  zipCode: string
+  zipCode: string,
+  salesFigures: salesFigures,
 }

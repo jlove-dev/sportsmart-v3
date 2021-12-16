@@ -11,7 +11,7 @@ const routes: Routes = [
   {path: 'add-seller', component: AddSellerComponent},
   {path: 'add-item', component: AddItemComponent},
   {path: 'find-vendor', component: FindVendorComponent},
-  {path: 'point-of-sale', component: SellItemComponent}
+  {path: 'sell-item', component: SellItemComponent},
 ];
 
 @NgModule({

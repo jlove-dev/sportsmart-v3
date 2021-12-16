@@ -1,1 +1,29 @@
-<p>sell-item works!</p>
+<app-pos-nav-header></app-pos-nav-header>
+<form #sellItemForm="ngForm" (ngSubmit)="onSubmit(sellItemForm)">
+  <div class="row">
+    <div class="form-group col-md-3">
+      <label for="barcode">Barcode</label>
+      <input name="barcode" type="text" class="form-control" id="barcode" placeholder="000000" [(ngModel)]="item.barCode">
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-3">
+      <label for="price">Price</label>
+      <input name="price" type="text" class="form-control" id="price" placeholder="$1.00" [(ngModel)]="item.price">
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-1">
+      <label for="cash">Cash</label>
+      <input type="radio" id="cash" name="choice">
+    </div>
+    <div class="form-group col-md-1">
+      <label for="check">Check</label>
+      <input type="radio" id="check" name="choice">
+    </div>
+  </div>
+  <button class="btn btn-primary" style="margin-top: 1%">Submit</button>
+</form>
+<div *ngIf="buildReceipt">
+  <app-sell-table [itemsArray]="itemsArray"></app-sell-table>
+</div>

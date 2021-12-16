@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import {Seller} from "../../../../shared/seller-class/seller";
-import {ApiService} from "../../services/api.service";
+import {DataApiService} from "../../services/data-api.service";
 
 @Component({
   selector: 'app-find-vendor',
@@ -12,7 +12,7 @@ export class FindVendorComponent implements OnInit {
 
   //FIXME - there's some issues with how this functions. If the VendorID is invalid on the API, it does funny things
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: DataApiService) { }
 
   seller: Seller = {
     vendorID: "",
@@ -23,6 +23,11 @@ export class FindVendorComponent implements OnInit {
     city: "",
     state: "",
     zipCode: "",
+    salesFigures: {
+      totalSold: 0,
+      vendorCut: 0,
+      troopCut: 0
+    }
   }
 
   ngOnInit(): void {

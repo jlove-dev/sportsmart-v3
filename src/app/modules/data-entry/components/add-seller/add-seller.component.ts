@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from "../../services/api.service";
+import { DataApiService } from "../../services/data-api.service";
 import { Seller } from "../../../../shared/seller-class/seller";
 import {NgForm} from '@angular/forms';
 
@@ -10,7 +10,7 @@ import {NgForm} from '@angular/forms';
 })
 export class AddSellerComponent implements OnInit {
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: DataApiService) { }
 
 
   seller: Seller = {
@@ -22,6 +22,11 @@ export class AddSellerComponent implements OnInit {
     city: "",
     state: "",
     zipCode: "",
+    salesFigures: {
+      totalSold: 0,
+      vendorCut: 0,
+      troopCut: 0,
+    }
   }
 
   submitted = false;

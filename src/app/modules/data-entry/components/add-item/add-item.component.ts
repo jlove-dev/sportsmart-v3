@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { items} from "../../../../shared/item-class/item";
 import {FormControl, FormGroup, NgForm} from "@angular/forms";
-import { ApiService } from "../../services/api.service";
+import { DataApiService } from "../../services/data-api.service";
 
 @Component({
   selector: 'app-add-item',
@@ -10,7 +10,7 @@ import { ApiService } from "../../services/api.service";
 })
 export class AddItemComponent implements OnInit {
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: DataApiService) { }
 
   firstForm = new FormGroup({
     vendorID: new FormControl(''),
