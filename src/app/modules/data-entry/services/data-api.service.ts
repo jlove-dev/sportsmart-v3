@@ -27,4 +27,11 @@ export class DataApiService {
   public addItem(vendorID: string, item: items){
     return this.httpClient.put(`${this.apiURL}/${vendorID}`, item);
   }
+
+  public checkSeller(vendorID: string) {
+    let param = {
+      vendorID: vendorID
+    };
+    return this.httpClient.get(`${this.apiURL}/${vendorID}`, {params: param});
+  }
 }

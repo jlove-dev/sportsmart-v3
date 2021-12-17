@@ -50,10 +50,21 @@ export class AddItemComponent implements OnInit {
     if(this.firstForm.get('vendorID').value === ''){
       return
     }
-    this.vendorAdded = true;
-    // @ts-ignore
-    this.vendorID = this.firstForm.get('vendorID').value;
-    this.secondForm.patchValue({vendorID: this.firstForm.get('vendorID')!.value});
+
+    let vendorValid = false;
+    // Check if the vendorID is valid
+    if(!vendorValid){
+      this.apiService.checkSeller(this.firstForm.get('vendorID')!.value).subscribe((response) => {
+        vendorValid = response >= 1;
+        if(vendorValid){
+          this.vendorAdded = true;
+          // @ts-ignore
+          this.vendorID = this.firstForm.get('vendorID').value;
+          this.secondForm.patchValue({vendorID: this.firstForm.get('vendorID')!.value});
+        }
+      })
+    }
+
   }
 
   getStatus(){

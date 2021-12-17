@@ -39,7 +39,6 @@ const findSeller = async(req, res) => {
 };
 
 const addItem = async(req, res) => {
-  console.log(req)
   model.updateOne({vendorID: req.params.vendorID},
     {
       $push: {
@@ -60,10 +59,25 @@ const addItem = async(req, res) => {
     }
     }
     )
+};
+
+const checkVendor = async(req, res) => {
+  model.countDocuments({vendorID: req.query.vendorID})
+    .exec((err, answer) => {
+      if(err) {
+        console.log(err);
+        return res.status(404).json(err);
+      } else {
+        console.log(answer);
+        return res.status(200).json(answer);
+      }
+    })
 }
+
 
 module.exports = {
   addSeller,
   findSeller,
-  addItem
+  addItem,
+  checkVendor
 }
