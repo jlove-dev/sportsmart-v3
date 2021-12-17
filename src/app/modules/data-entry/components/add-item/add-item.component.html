@@ -1,18 +1,24 @@
 <app-data-entry-nav-header></app-data-entry-nav-header>
 <form [formGroup]="firstForm" *ngIf="getStatus() == false; else elseBlock" (ngSubmit)="onVendorSubmit()">
   <div class="row">
-    <div class="form-group col-md-3">
+    <div class="form-group col-md-2">
       <label>Vendor ID</label>
       <input formControlName="vendorID" type="text" class="form-control" placeholder="000000">
     </div>
-    <button class="btn btn-primary col-md-3" style="margin-top: 1%">Submit</button>
+  </div>
+  <div class="row">
+    <button class="btn btn-primary col-md-1">Submit</button>
   </div>
 </form>
 
 <ng-template #elseBlock>
   <form [formGroup]="secondForm" (ngSubmit)="submitItem()">
-    <button class="btn btn-primary col-md-1" style="margin-top: 1%" (click)="secondForm.reset()">Reset Form</button>
-    <a routerLink="/add-item" class="btn btn-primary col-md-1 offset-1" style="margin-top: 1%" (click)="clearID()">Back</a>
+    <div class="row">
+      <button class="btn btn-primary col-md-1" (click)="secondForm.reset()">Reset Form</button>
+      <a class="col-md-1"></a>
+      <button routerLink="/add-item" class="btn btn-primary col-md-1 offset-2" (click)="clearID()">Back</button>
+<!--      <a routerLink="/add-item" class="btn btn-primary col-md-1 offset-1" (click)="clearID()">Back</a>-->
+    </div>
     <div class="row">
       <div class="form-group col-md-3">
         <label>Vendor ID</label>
@@ -38,6 +44,8 @@
         <input class="form-control" formControlName="price" placeholder="$1.00">
       </div>
     </div>
-    <button class="btn btn-primary col-md-3" style="margin-top: 1%">Submit</button>
+    <div class="row">
+      <button class="btn btn-primary col-md-3">Submit</button>
+    </div>
   </form>
 </ng-template>

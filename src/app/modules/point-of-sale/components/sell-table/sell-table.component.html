@@ -1,10 +1,12 @@
-<div class="col-md-6">
-  <table>
+<div class="col-md-12">
+  <table class="col-md-12">
     <thead>
     <tr>
       <th>Barcode</th>
       <th>Category</th>
       <th>Price</th>
+      <th>Update</th>
+      <th>Delete</th>
     </tr>
     </thead>
     <tbody>
@@ -12,7 +14,8 @@
 <!--      These doesn't show up correctly in IntelliJ - I wonder why-->
       <th>{{entry.barCode}}</th>
       <th>{{entry.category}}</th>
-      <td>{{entry.price}}
+      <td>{{entry.price}}</td>
+      <td>
         <button class="btn btn-primary">Update</button>
       </td>
       <td>

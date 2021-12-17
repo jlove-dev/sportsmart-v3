@@ -23,13 +23,16 @@ export class SellItemComponent implements OnInit {
     price: ""
 }
 
+  //Message interface
   message: ItemMessage = {
     text: ''
   }
 
+  //Create itemsArray to pass down to sell-table component
   itemsArray: { price: string; category: string; barCode: string }[] = [
   ]
 
+  //Reset the item interface
   resetInterface(){
     this.item.barCode = '';
     this.item.category = '';
@@ -61,6 +64,7 @@ export class SellItemComponent implements OnInit {
     });
   };
 
+  //Check if items have been added to the array
   buildReceipt() {
     return this.itemsArray.length > 0;
   }

@@ -1,11 +1,13 @@
 <app-data-entry-nav-header></app-data-entry-nav-header>
 <form #findVendorForm="ngForm" (ngSubmit)="onSubmit(findVendorForm)">
   <div class="row">
-    <div class="form-group col-md-3">
+    <div class="form-group col-md-2">
       <label for="vendorID">Vendor ID</label>
       <input name="id" type="text" class="form-control" id="vendorID" placeholder="000000" [(ngModel)]="seller.vendorID">
     </div>
-    <button class="btn btn-primary col-md-3" style="margin-top: 1%">Submit</button>
+  </div>
+  <div class="row">
+    <button class="btn btn-primary col-md-1">Submit</button>
   </div>
 </form>
 <div *ngIf="dataPresent()">

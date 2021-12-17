@@ -12,6 +12,7 @@ export class AddItemComponent implements OnInit {
 
   constructor(private apiService: DataApiService) { }
 
+  //Formgroup for only the first form
   firstForm = new FormGroup({
     vendorID: new FormControl(''),
   });
@@ -25,19 +26,21 @@ export class AddItemComponent implements OnInit {
     price: new FormControl('')
   })
 
+  //Import items interface
   item: items = {
     barCode: '',
     category: '',
     price: ''
 }
 
+  //Global variables
   vendorID = null;
-
   vendorAdded = false;
 
   ngOnInit(): void {
   }
 
+  //Clear ID since the vendor does not exist
   clearID(){
     this.firstForm.setValue({vendorID: ''});
     this.secondForm.reset();
@@ -45,9 +48,11 @@ export class AddItemComponent implements OnInit {
     this.vendorAdded = false;
   }
 
+  //On first submit
   onVendorSubmit(){
-    // @ts-ignore
-    if(this.firstForm.get('vendorID').value === ''){
+
+    //If the user hasn't entered a vendorID
+    if(this.firstForm.get('vendorID')!.value === ''){
       return
     }
 
@@ -58,8 +63,7 @@ export class AddItemComponent implements OnInit {
         vendorValid = response >= 1;
         if(vendorValid){
           this.vendorAdded = true;
-          // @ts-ignore
-          this.vendorID = this.firstForm.get('vendorID').value;
+          this.vendorID = this.firstForm.get('vendorID')!.value;
           this.secondForm.patchValue({vendorID: this.firstForm.get('vendorID')!.value});
         }
       })
@@ -67,16 +71,19 @@ export class AddItemComponent implements OnInit {
 
   }
 
+  //Get status of if the vendor has been added for elseblock of NgIf
   getStatus(){
     return this.vendorAdded;
   }
 
+  //Set the item interface
   setItem() {
     this.item.barCode = this.secondForm.get('itemID')!.value;
     this.item.category = this.secondForm.get('itemCode')!.value;
     this.item.price = this.secondForm.get('price')!.value;
   }
 
+  //Actual API call to add the item to the database
   submitItem() {
 
     this.setItem();
