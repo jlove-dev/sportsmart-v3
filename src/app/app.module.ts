@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {DataEntryModule} from "./modules/data-entry/data-entry.module";
 import {HomeModule} from "./modules/home/home.module";
 import {PointOfSaleModule} from "./modules/point-of-sale/point-of-sale.module";
+import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {PointOfSaleModule} from "./modules/point-of-sale/point-of-sale.module";
     AppRoutingModule,
     DataEntryModule,
     HomeModule,
-    PointOfSaleModule
+    PointOfSaleModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

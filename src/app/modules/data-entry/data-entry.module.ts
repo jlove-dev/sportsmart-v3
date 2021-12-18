@@ -6,14 +6,12 @@ import { FindVendorComponent } from './components/find-vendor/find-vendor.compon
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from "@angular/router";
-import { DataEntryNavHeaderComponent } from './components/data-entry-nav-header/data-entry-nav-header.component';
 
 @NgModule({
     declarations: [
         AddSellerComponent,
         AddItemComponent,
-        FindVendorComponent,
-        DataEntryNavHeaderComponent
+        FindVendorComponent
     ],
     exports: [
         AddSellerComponent

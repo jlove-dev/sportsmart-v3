@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PosNavHeaderComponent } from './pos-nav-header.component';
+import { NavHeaderComponent } from './nav-header.component';
 
-describe('PosNavHeaderComponent', () => {
-  let component: PosNavHeaderComponent;
-  let fixture: ComponentFixture<PosNavHeaderComponent>;
+describe('NavHeaderComponent', () => {
+  let component: NavHeaderComponent;
+  let fixture: ComponentFixture<NavHeaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PosNavHeaderComponent ]
+      declarations: [ NavHeaderComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PosNavHeaderComponent);
+    fixture = TestBed.createComponent(NavHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

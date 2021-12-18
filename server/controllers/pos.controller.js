@@ -45,6 +45,8 @@ const sellItem = async (req, res) => {
   })
 };
 
+//FIXME - model.exists
+
 const getItem = async (req, res) => {
   await model.findOne({"items.active.barCode": req.query.barCode})
     .exec((err, item) => {
