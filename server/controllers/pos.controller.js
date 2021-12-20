@@ -48,16 +48,52 @@ const sellItem = async (req, res) => {
 //FIXME - model.exists
 
 const getItem = async (req, res) => {
-  await model.findOne({"items.active.barCode": req.query.barCode})
-    .exec((err, item) => {
-      if(!item) {
-        return res.status(404).json({'message': 'Can\'t find that item!'})
-      } else if (err) {
-        return res.status(404).json(err);
-      } else {
-        return res.status(200).json({'message': 'true'});
+  await model.aggregate([
+      [
+        {
+          '$match': {
+            'items.active.barCode': req.query.barCode
+          }
+        }, {
+        '$unwind': {
+          'path': '$items.active',
+          'includeArrayIndex': 'string',
+          'preserveNullAndEmptyArrays': true
+        }
+      }, {
+        '$group': {
+          '_id': '$items.active._id',
+          'barCode': {
+            '$first': '$items.active.barCode'
+          },
+          'category': {
+            '$first': '$items.active.category'
+          },
+          'price': {
+            '$first': '$items.active.price'
+          }
+        }
+      }, {
+        '$match': {
+          'barCode': req.query.barCode
+        }
       }
-    });
+      ]
+    ]).exec((err, item) => {
+      if(item){
+        res.send(item[0]);
+      }
+  });
+  // await model.findOne({"items.active.barCode": req.query.barCode}, 'items.active')
+  //   .exec((err, item) => {
+  //     if(!item) {
+  //       return res.status(404).json({'message': 'Can\'t find that item!'})
+  //     } else if (err) {
+  //       return res.status(404);
+  //     } else {
+  //       return res.status(200).json(item);
+  //     }
+  //   });
 }
 
 module.exports = {sellItem, getItem};

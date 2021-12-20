@@ -1,8 +1,13 @@
 <form #findVendorForm="ngForm" (ngSubmit)="onSubmit(findVendorForm)">
+  <div class="row" *ngIf="lookupError()">
+    <div class="alert alert-danger col-md-3" role="alert">
+      Sorry, couldn't find vendor ID: {{this.holdPreviousID}}
+    </div>
+  </div>
   <div class="row">
     <div class="form-group col-md-2">
       <label for="vendorID">Vendor ID</label>
-      <input name="id" type="text" class="form-control" id="vendorID" placeholder="000000" [(ngModel)]="seller.vendorID">
+      <input name="id" type="text" class="form-control" id="vendorID" placeholder="000000" [(ngModel)]="this.seller.vendorID">
     </div>
   </div>
   <div class="row">

@@ -4,18 +4,18 @@ const itemSchema = new mongoose.Schema({
   barCode: {type: String, required: true, index: true},
   category: {type: String, required: true},
   price: {type: Number, required: true}
-}, {_id: false});
+});
 
 const itemTotalSchema = new mongoose.Schema({
   active: [itemSchema],
   sold: [itemSchema]
-}, {_id: false});
+});
 
 const salesFigureSchema = new mongoose.Schema({
   totalSold: {type: Number, required: true},
   vendorCut: {type: Number, required: true},
   troopCut: {type: Number, require: true},
-}, {_id: false})
+})
 
 //FIXME - there's probably some better types out there than just strings?
 const sellerSchema = new mongoose.Schema({

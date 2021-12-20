@@ -30,14 +30,29 @@ export class FindVendorComponent implements OnInit {
     }
   }
 
+  vendorLookupError = false;
+  holdPreviousID = '';
+
   ngOnInit(): void {
   }
 
   onSubmit(form: NgForm) {
+    this.holdPreviousID = this.seller.vendorID;
     this.apiService.getSeller(this.seller.vendorID).subscribe((data: any) => {
-      this.seller = data[0];
+      if (data.length < 1) {
+        this.vendorLookupError = true;
+      } else {
+        this.vendorLookupError = false;
+        this.seller = data[0];
+      }
     })
+    //FIXME - need to not reset form, rather work with FormGroup like the add-item does
+    //FIXME - this is important to maintain the vendorID in the input field
     form.resetForm();
+  }
+
+  lookupError() {
+    return this.vendorLookupError;
   }
 
   dataPresent(){

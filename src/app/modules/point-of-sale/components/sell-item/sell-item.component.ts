@@ -39,28 +39,22 @@ export class SellItemComponent implements OnInit {
     this.item.price = '';
   }
 
-  //FIXME - this seems like a VERY complicated way of finding out if the item exists in the DB
-  //FIXME - really need to investigate this @Ryan
   onSubmit(form: NgForm) {
 
-    //FIXME - on a bad barCode, it 404's. It then doesn't assign a value to the message interface
-    //FIXME - thus, still adds to the array which it doesn't
+    //Further information on what's going on here can be found by diving into the response chain
+    //getItem utilizes Angular pipes and the actual query is a MongoDB Aggregation pipeline
     this.apiService.getItem(this.item.barCode).subscribe(response => {
-      console.log(response);
-      this.message['text'] = response;
-      if (this.message['text']['message'] === 'true'){
+      if(response !== null){
         this.itemsArray.push(
           {
             price: this.item.price,
-            category: this.item.category,
-            barCode: this.item.barCode
+            category: response.category,
+            barCode: response.barCode
           }
-        );
-        this.resetInterface()
+        )
+        this.resetInterface();
         form.resetForm();
       }
-    }, error => {
-      console.log(error);
     });
   };
 

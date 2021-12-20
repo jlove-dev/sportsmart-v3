@@ -31,7 +31,7 @@ const findSeller = async(req, res) => {
       if(!seller) {
         return res.status(404).json({"message": "Seller not found"});
       } else if (err) {
-        return res.status(404).json(err);
+        return res.status(404).json('API ERROR:', err);
       } else {
         return res.status(200).json(seller);
       }
@@ -66,7 +66,7 @@ const checkVendor = async(req, res) => {
     if (err) {
       console.log('Error finding vendor', err);
     } else {
-      res.send(doc);
+      res.send(res.json(doc));
     }
   });
 }
