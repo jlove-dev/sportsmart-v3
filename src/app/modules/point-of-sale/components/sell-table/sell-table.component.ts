@@ -17,7 +17,10 @@ export class SellTableComponent implements OnInit {
 
   sellItems() {
     for(let i = 0; i < this.itemsArray.length; i++){
-      this.apiService.sellItem(this.itemsArray[i].barCode);
+      //This doesn't work without subscribing??
+      this.apiService.sellItem(this.itemsArray[i].barCode).subscribe((response) => {
+        console.log(response);
+      });
     }
 
     //FIXME - need to figure out how to empty the table after successful submission
