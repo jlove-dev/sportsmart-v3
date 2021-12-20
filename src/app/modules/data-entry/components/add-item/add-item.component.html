@@ -1,4 +1,9 @@
 <form [formGroup]="firstForm" *ngIf="getStatus() == false; else elseBlock" (ngSubmit)="onVendorSubmit()">
+  <div class="row" *ngIf="lookupError()">
+    <div class="alert alert-danger col-md-3" role="alert">
+      Sorry, couldn't find vendor ID: {{this.holdPreviousID}}
+    </div>
+  </div>
   <div class="row">
     <div class="form-group col-md-2">
       <label>Vendor ID</label>

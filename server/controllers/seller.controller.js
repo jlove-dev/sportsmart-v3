@@ -62,16 +62,13 @@ const addItem = async(req, res) => {
 };
 
 const checkVendor = async(req, res) => {
-  model.countDocuments({vendorID: req.query.vendorID})
-    .exec((err, answer) => {
-      if(err) {
-        console.log(err);
-        return res.status(404).json(err);
-      } else {
-        console.log(answer);
-        return res.status(200).json(answer);
-      }
-    })
+  model.exists({vendorID: req.query.vendorID}, function (err, doc) {
+    if (err) {
+      console.log('Error finding vendor', err);
+    } else {
+      res.send(doc);
+    }
+  });
 }
 
 

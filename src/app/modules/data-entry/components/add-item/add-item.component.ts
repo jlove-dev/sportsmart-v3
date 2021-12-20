@@ -35,7 +35,9 @@ export class AddItemComponent implements OnInit {
 
   //Global variables
   vendorID = null;
+  holdPreviousID = null;
   vendorAdded = false;
+  vendorFindError = false;
 
   ngOnInit(): void {
   }
@@ -60,11 +62,15 @@ export class AddItemComponent implements OnInit {
     // Check if the vendorID is valid
     if(!vendorValid){
       this.apiService.checkSeller(this.firstForm.get('vendorID')!.value).subscribe((response) => {
-        vendorValid = response >= 1;
-        if(vendorValid){
+
+        if(response !== null) { //The vendor exists in the db
           this.vendorAdded = true;
+          this.vendorFindError = false;
           this.vendorID = this.firstForm.get('vendorID')!.value;
           this.secondForm.patchValue({vendorID: this.firstForm.get('vendorID')!.value});
+        } else { //The vendor does not exist, display error message
+          this.vendorFindError = true;
+          this.holdPreviousID = this.firstForm.get('vendorID')!.value;
         }
       })
     }
@@ -74,6 +80,11 @@ export class AddItemComponent implements OnInit {
   //Get status of if the vendor has been added for elseblock of NgIf
   getStatus(){
     return this.vendorAdded;
+  }
+
+  //Conditional if an error should be displayed or not
+  lookupError() {
+    return this.vendorFindError;
   }
 
   //Set the item interface
