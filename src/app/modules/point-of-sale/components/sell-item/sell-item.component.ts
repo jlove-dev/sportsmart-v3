@@ -32,6 +32,9 @@ export class SellItemComponent implements OnInit {
   itemsArray: { listedPrice: string; price: string; category: string; barCode: string }[] = [
   ]
 
+  lookUpError = false;
+  previousID = '';
+
   //Reset the item interface
   resetInterface(){
     this.item.barCode = '';
@@ -55,9 +58,18 @@ export class SellItemComponent implements OnInit {
         )
         this.resetInterface();
         form.resetForm();
+        this.lookUpError = false;
+      } else {
+        this.previousID = this.item.barCode;
+        this.lookUpError = true;
       }
     });
   };
+
+  //FIXME - refer to HTML FIXME
+  checkLookupStatus() {
+    return this.lookUpError;
+  }
 
   //Check if items have been added to the array
   buildReceipt() {

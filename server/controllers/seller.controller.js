@@ -66,7 +66,7 @@ const checkVendor = async(req, res) => {
     if (err) {
       console.log('Error finding vendor', err);
     } else {
-      res.send(res.json(doc));
+      res.send(doc);
     }
   });
 }

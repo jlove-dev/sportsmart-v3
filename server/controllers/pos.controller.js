@@ -5,21 +5,21 @@ const sellItem = async (req, res) => {
 
   let result;
 
-  await model.findOne({"items.active.barCode": req.body.barCode}).then((doc) => {
+  await model.findOne({"items.active.barCode": req.body.params.barCode}).then((doc) => {
     let iter = doc.items.active;
     //FIXME - wondering if there's a more efficient way to do this
     for (let i = 0; i < iter.length; i++) {
-      if (iter[i].barCode === req.body.barCode) {
+      if (iter[i].barCode === req.body.params.barCode) {
         result = iter[i];
       }
     }
   });
 
-  await model.updateOne({'items.active.barCode': req.body.barCode},
+  await model.updateOne({'items.active.barCode': req.body.params.barCode},
     {
       $pull: {
         'items.active': {
-          barCode: req.body.barCode
+          barCode: req.body.params.barCode
         }
       },
       $push: {
@@ -45,9 +45,8 @@ const sellItem = async (req, res) => {
   })
 };
 
-//FIXME - model.exists
-
 const getItem = async (req, res) => {
+  console.log('inside getitem')
   await model.aggregate([
       [
         {
@@ -80,20 +79,13 @@ const getItem = async (req, res) => {
       }
       ]
     ]).exec((err, item) => {
+      if(err){
+        console.log(err);
+      }
       if(item){
         res.send(item[0]);
       }
   });
-  // await model.findOne({"items.active.barCode": req.query.barCode}, 'items.active')
-  //   .exec((err, item) => {
-  //     if(!item) {
-  //       return res.status(404).json({'message': 'Can\'t find that item!'})
-  //     } else if (err) {
-  //       return res.status(404);
-  //     } else {
-  //       return res.status(200).json(item);
-  //     }
-  //   });
 }
 
 module.exports = {sellItem, getItem};

@@ -14,8 +14,11 @@ export class PosApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public sellItem(item: items) {
-    return this.httpClient.post(`${this.apiURL}`, item);
+  public sellItem(barCode: string) {
+    let param = {
+      barCode: barCode
+    }
+    return this.httpClient.post(`${this.apiURL}`, {params: param});
   }
 
   public getItem(barCode: string) {
@@ -27,6 +30,7 @@ export class PosApiService {
     //Or, it returns null since the ID isn't found
     return this.httpClient.get(`${this.apiURL}`, {params: param})
       .pipe(map((res: any) => {
+        console.log(res);
         if (res !== null){
           return {price: res.price, category: res.category, barCode: res.barCode}
         } else {
