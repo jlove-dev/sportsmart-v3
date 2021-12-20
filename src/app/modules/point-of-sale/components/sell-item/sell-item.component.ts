@@ -29,7 +29,7 @@ export class SellItemComponent implements OnInit {
   }
 
   //Create itemsArray to pass down to sell-table component
-  itemsArray: { price: string; category: string; barCode: string }[] = [
+  itemsArray: { listedPrice: string; price: string; category: string; barCode: string }[] = [
   ]
 
   //Reset the item interface
@@ -47,6 +47,7 @@ export class SellItemComponent implements OnInit {
       if(response !== null){
         this.itemsArray.push(
           {
+            listedPrice: response.price,
             price: this.item.price,
             category: response.category,
             barCode: response.barCode

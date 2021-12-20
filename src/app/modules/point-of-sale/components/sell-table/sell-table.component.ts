@@ -12,6 +12,6 @@ export class SellTableComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @Input() itemsArray: { price: string; category: string; barCode: string; }[] = [];
+  @Input() itemsArray: {listedPrice: string; price: string; category: string; barCode: string; }[] = [];
 
 }

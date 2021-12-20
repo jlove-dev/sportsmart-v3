@@ -4,6 +4,7 @@
     <tr>
       <th>Barcode</th>
       <th>Category</th>
+      <th>Listed Price</th>
       <th>Price</th>
       <th>Update</th>
       <th>Delete</th>
@@ -11,10 +12,10 @@
     </thead>
     <tbody>
     <tr *ngFor="let entry of itemsArray">
-<!--      These doesn't show up correctly in IntelliJ - I wonder why-->
-      <th>{{entry.barCode}}</th>
-      <th>{{entry.category}}</th>
-      <td>{{entry.price}}</td>
+      <th class="col-md-2">{{entry.barCode}}</th>
+      <th class="col-md-2">{{entry.category}}</th>
+      <th class="col-md-2">{{entry.listedPrice}}</th>
+      <td class="col-md-2">{{entry.price}}</td>
       <td>
         <button class="btn btn-primary">Update</button>
       </td>
