@@ -46,7 +46,6 @@ const sellItem = async (req, res) => {
 };
 
 const getItem = async (req, res) => {
-  console.log('inside getitem')
   await model.aggregate([
       [
         {

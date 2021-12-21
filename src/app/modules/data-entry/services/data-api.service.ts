@@ -10,30 +10,32 @@ import {map} from "rxjs";
 export class DataApiService {
 
   //This will likely need to change as more route are added
-  apiURL: string = 'http://localhost:8000/sellers'
+  sellerApiURL: string = 'http://localhost:8000/sellers'
+  posApiURL: string = 'http://localhost:8000/pos'
 
   constructor(private httpClient: HttpClient) { }
 
   public createSeller(seller: Seller) {
-    return this.httpClient.post(`${this.apiURL}`, seller);
+    return this.httpClient.post(`${this.sellerApiURL}`, seller);
   }
 
   public getSeller(vendorID: string) {
     let param = {
       vendorID: vendorID
     };
-    return this.httpClient.get(`${this.apiURL}`, {params: param});
+    return this.httpClient.get(`${this.sellerApiURL}`, {params: param});
   }
 
   public addItem(vendorID: string, item: items){
-    return this.httpClient.put(`${this.apiURL}/vendor/${vendorID}`, item);
+    return this.httpClient.put(`${this.sellerApiURL}/vendor/${vendorID}`, item);
   }
 
+  //Make sure to call the posAPI
   public getItem(barCode: string){
     let param = {
       barCode: barCode
     };
-    return this.httpClient.get(`${this.apiURL}/item/${barCode}`, {params: param})
+    return this.httpClient.get(`${this.posApiURL}`, {params: param})
       .pipe(map((res: any) => {
           console.log(res);
           if (res !== null){
@@ -49,6 +51,6 @@ export class DataApiService {
     let param = {
       vendorID: vendorID
     };
-    return this.httpClient.get(`${this.apiURL}/vendor/${vendorID}`, {params: param});
+    return this.httpClient.get(`${this.sellerApiURL}/vendor/${vendorID}`, {params: param});
   }
 }
