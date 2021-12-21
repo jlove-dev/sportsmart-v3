@@ -5,6 +5,7 @@ import {HomeScreenComponent} from "./modules/home/components/home-screen/home-sc
 import {SellItemComponent} from "./modules/point-of-sale/components/sell-item/sell-item.component";
 import {AddItemComponent} from "./modules/data-entry/components/add-item/add-item.component";
 import {FindVendorComponent} from "./modules/data-entry/components/find-vendor/find-vendor.component";
+import {FindItemComponent} from "./modules/point-of-sale/components/find-item/find-item.component";
 
 const routes: Routes = [
   {path: '', component: HomeScreenComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'add-item', component: AddItemComponent},
   {path: 'find-vendor', component: FindVendorComponent},
   {path: 'sell-item', component: SellItemComponent},
+  {path: 'find-item', component: FindItemComponent}
 ];
 
 @NgModule({

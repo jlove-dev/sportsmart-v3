@@ -4,13 +4,15 @@ import { SellItemComponent } from './components/sell-item/sell-item.component';
 import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import { SellTableComponent } from './components/sell-table/sell-table.component';
+import { FindItemComponent } from './components/find-item/find-item.component';
 
 
 
 @NgModule({
     declarations: [
         SellItemComponent,
-        SellTableComponent
+        SellTableComponent,
+        FindItemComponent
     ],
     exports: [
     ],

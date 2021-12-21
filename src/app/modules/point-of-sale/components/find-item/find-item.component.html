@@ -1,0 +1,33 @@
+<form #findVendorForm="ngForm" (ngSubmit)="onSubmit(findVendorForm)">
+  <div class="row" *ngIf="lookupError()">
+    <div class="alert alert-danger col-md-3" role="alert">
+      Sorry, couldn't find vendor ID: {{this.holdPreviousBarCode}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-2">
+      <label for="vendorID">Barcode</label>
+      <input name="id" type="text" class="form-control" id="vendorID" placeholder="000000" [(ngModel)]="this.item.barCode">
+    </div>
+  </div>
+  <div class="row">
+    <button class="btn btn-primary col-md-1">Submit</button>
+  </div>
+</form>
+<div *ngIf="dataPresent()">
+  <div class="row">
+<!--    FIXME - NgModel makes this change upon doing another lookup after the first-->
+    <div class="form-group col-md-3">
+      <label>Barcode</label>
+      <p>{{this.item.barCode}}</p>
+    </div>
+    <div class="form-group col-md-3">
+      <label>Category</label>
+      <p>{{this.item.category}}</p>
+    </div>
+    <div class="form-group col-md-3">
+      <label>Price</label>
+      <p>{{this.item.price}}</p>
+    </div>
+  </div>
+</div>

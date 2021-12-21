@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Seller } from '../../../shared/seller-class/seller';
 import { items } from '../../../shared/item-class/item';
+import {map} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -25,13 +26,29 @@ export class DataApiService {
   }
 
   public addItem(vendorID: string, item: items){
-    return this.httpClient.put(`${this.apiURL}/${vendorID}`, item);
+    return this.httpClient.put(`${this.apiURL}/vendor/${vendorID}`, item);
+  }
+
+  public getItem(barCode: string){
+    let param = {
+      barCode: barCode
+    };
+    return this.httpClient.get(`${this.apiURL}/item/${barCode}`, {params: param})
+      .pipe(map((res: any) => {
+          console.log(res);
+          if (res !== null){
+            return {price: res.price, category: res.category, barCode: res.barCode}
+          } else {
+            return null
+          }
+        })
+      )
   }
 
   public checkSeller(vendorID: string) {
     let param = {
       vendorID: vendorID
     };
-    return this.httpClient.get(`${this.apiURL}/${vendorID}`, {params: param});
+    return this.httpClient.get(`${this.apiURL}/vendor/${vendorID}`, {params: param});
   }
 }

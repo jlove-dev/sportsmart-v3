@@ -69,6 +69,49 @@ const checkVendor = async(req, res) => {
       res.send(doc);
     }
   });
+};
+
+const getItem = async(req, res) => {
+  //FIXME - I can console the query but then it's empty in the find????????
+  await model.aggregate([
+    [
+      {
+        '$match': {
+          'items.active.barCode': req.query.barCode
+        }
+      }, {
+      '$unwind': {
+        'path': '$items.active',
+        'includeArrayIndex': 'string',
+        'preserveNullAndEmptyArrays': true
+      }
+    }, {
+      '$group': {
+        '_id': '$items.active._id',
+        'barCode': {
+          '$first': '$items.active.barCode'
+        },
+        'category': {
+          '$first': '$items.active.category'
+        },
+        'price': {
+          '$first': '$items.active.price'
+        }
+      }
+    }, {
+      '$match': {
+        'barCode': req.query.barCode
+      }
+    }
+    ]
+  ]).exec((err, item) => {
+    if(err){
+      console.log(err);
+    }
+    if(item){
+      res.send(item[0]);
+    }
+  })
 }
 
 
@@ -76,5 +119,6 @@ module.exports = {
   addSeller,
   findSeller,
   addItem,
-  checkVendor
+  checkVendor,
+  getItem
 }
