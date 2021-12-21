@@ -13,7 +13,7 @@ export class SellTableComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @Input() itemsArray: {listedPrice: string; price: string; category: string; barCode: string; }[] = [];
+  @Input() itemsArray: any [] = [];
 
   sellItems() {
     for(let i = 0; i < this.itemsArray.length; i++){
@@ -23,7 +23,7 @@ export class SellTableComponent implements OnInit {
       });
     }
 
-    //FIXME - need to figure out how to empty the table after successful submission
+    this.itemsArray = [];
   }
 
 }
