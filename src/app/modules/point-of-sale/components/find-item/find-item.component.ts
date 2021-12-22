@@ -11,8 +11,6 @@ import {items} from "../../../../shared/item-class/item";
 })
 export class FindItemComponent implements OnInit {
 
-  //FIXME - there's some issues with how this functions. If the VendorID is invalid on the API, it does funny things
-
   constructor(private apiService: DataApiService) { }
 
   item: items = {
@@ -21,6 +19,7 @@ export class FindItemComponent implements OnInit {
     price: ''
 }
 
+  barCodeLookup = '';
   itemLookupError = false;
   holdPreviousBarCode = '';
 
@@ -28,8 +27,8 @@ export class FindItemComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.holdPreviousBarCode = this.item.barCode;
-    this.apiService.getItem(this.item.barCode).subscribe((data: any) => {
+    this.holdPreviousBarCode = this.barCodeLookup;
+    this.apiService.getItem(this.barCodeLookup).subscribe((data: any) => {
       this.item.barCode = data.barCode;
       this.item.category = data.category;
       this.item.price = data.price;

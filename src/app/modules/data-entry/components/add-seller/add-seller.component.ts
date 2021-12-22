@@ -31,7 +31,6 @@ export class AddSellerComponent implements OnInit {
 
   submitted = false;
 
-  //FIXME - is this the best way to reset this form?
   onSubmit(sellerForm: NgForm) {
     this.apiService.createSeller(this.seller).subscribe(() => {
       console.log(`Created seller: ${this.seller.firstName}`);
