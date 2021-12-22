@@ -6,6 +6,7 @@ const saltRounds = 5;
 
 const login = async(req, res) => {
 
+  //Find username and retrieve hashed password
   await model.find({userName: req.body.userName})
     .exec((err, user) => {
       if(!user) {
@@ -13,11 +14,13 @@ const login = async(req, res) => {
       } else if (err) {
         return res.status(404).json(err);
       } else {
+
+        //User found, compare the hashed password to passed in password
         bcrypt.compare(req.body.password, user[0]['password'], function(err, result) {
           if(err){
             return res.status(404).json(err);
           } else {
-            return res.status(200).json(result);
+            return res.status(200).json(result); //Currently returns true or false
           }
         })
       }
