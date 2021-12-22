@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PosApiService } from '../../services/pos-api.service';
-import { items } from "../../../../shared/item-class/item";
+import { items } from "../../../../shared/models/item-class/item";
 import {NgForm} from "@angular/forms";
-import {ItemMessage} from "../../../../shared/message-class/message";
+import {ItemMessage} from "../../../../shared/models/message-class/message";
 
 @Component({
   selector: 'app-sell-item',

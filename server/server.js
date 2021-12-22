@@ -10,10 +10,12 @@ mongoose.set('debug', true);
 
 //models
 require('./models/seller.model');
+require('./models/user.model');
 
 //Routes
 const dataEntryRoutes = require('./routes/data-entry.base.route');
 const posRoutes = require('./routes/pos.base.route');
+const loginRoutes = require('./routes/login.base.route');
 
 
 app.use(bodyParser.json());
@@ -22,7 +24,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 //Main route
 app.use('/sellers', dataEntryRoutes);
-app.use('/pos', posRoutes)
+app.use('/pos', posRoutes);
+app.use('/login', loginRoutes);
 
 //mongo running
 mongoose.connect(dbConfig.url).then(() => {

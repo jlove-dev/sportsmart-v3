@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
-import { items } from '../../../shared/item-class/item';
+import { items } from '../../../shared/models/item-class/item';
 import {map} from "rxjs";
 
 @Injectable({

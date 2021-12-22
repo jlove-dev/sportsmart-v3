@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {DataApiService} from "../../../data-entry/services/data-api.service";
-import {Seller} from "../../../../shared/seller-class/seller";
+import {Seller} from "../../../../shared/models/seller-class/seller";
 import {NgForm} from "@angular/forms";
-import {items} from "../../../../shared/item-class/item";
+import {items} from "../../../../shared/models/item-class/item";
 
 @Component({
   selector: 'app-find-item',
