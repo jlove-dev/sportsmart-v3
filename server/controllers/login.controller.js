@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
 const model = mongoose.model('users');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const fs = require("fs");
 
 const saltRounds = 5;
+
+const RSA_PRIVATE_KEY = fs.readFileSync('./keys/private.key');
 
 const login = async(req, res) => {
 
@@ -20,7 +24,15 @@ const login = async(req, res) => {
           if(err){
             return res.status(404).json(err);
           } else {
-            return res.status(200).json(result); //Currently returns true or false
+            const jwtBearerToken = jwt.sign({}, RSA_PRIVATE_KEY, null, {
+              algorithm: 'RS256',
+              expiresIn: 86400,
+              subject: req.body.userName
+            });
+            return res.status(200).json({
+              idToken: jwtBearerToken,
+              expiresIn: 86400
+            });
           }
         })
       }

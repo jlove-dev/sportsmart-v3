@@ -31,6 +31,14 @@ Once installed, and MongoDB is running in the background, simply run:
 
 This will concurrently run the NodeJS backend API & the Angular frontend.
 
+### Auth
+
+I'm working on implementing authentication. In order to ensure a smooth experience, you need to go into this location: 
+
+`sportsmart-v3/server/keys`
+
+And create a file called `private.key` in there. The contents can be whatever you like however authentication won't work without this. 
+
 ### Future
 
 This project is in development. The hope is to remake the current VBS version of the application so it's more future proof.

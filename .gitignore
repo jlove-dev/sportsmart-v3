@@ -11,6 +11,9 @@
 /node_modules
 server/node_modules
 
+# keys
+server/keys/private.key
+
 # profiling files
 chrome-profiler-events*.json
 
