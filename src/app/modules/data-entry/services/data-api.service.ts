@@ -27,7 +27,7 @@ export class DataApiService {
   }
 
   public addItem(vendorID: string, item: items){
-    return this.httpClient.put(`${this.sellerApiURL}/vendor/${vendorID}`, item);
+    return this.httpClient.put(`${this.sellerApiURL}/${vendorID}`, item);
   }
 
   //Make sure to call the posAPI
@@ -51,6 +51,6 @@ export class DataApiService {
     let param = {
       vendorID: vendorID
     };
-    return this.httpClient.get(`${this.sellerApiURL}/vendor/${vendorID}`, {params: param});
+    return this.httpClient.get(`${this.sellerApiURL}/${vendorID}`, {params: param});
   }
 }
