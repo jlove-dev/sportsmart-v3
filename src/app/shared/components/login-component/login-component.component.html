@@ -1,1 +1,26 @@
-<p>login-component works!</p>
+<div class="container">
+  <br>
+  <div class="row">
+    <p class="col-md-4 offset-md-4" style="font-weight: bolder">
+      Welcome to Sportsmart! Please login.
+    </p>
+  </div>
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <label for = "email">Username </label>
+      <input class = "form-control" type= "email" name = "email" id = "email" placeholder = "Sales8" [(ngModel)]="user.userName">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <label>Password </label>
+      <input class = "form-control" type = "password" name = "password" placeholder = "********" [(ngModel)]="user.password">
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <button class="btn btn-primary" (click)="login()">Sign Up</button>
+    </div>
+  </div>
+</div>

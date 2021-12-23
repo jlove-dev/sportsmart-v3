@@ -26,8 +26,10 @@ const RSA_PRIVATE_KEY = fs.readFileSync(path.join(__dirname, '../keys/private.ke
 
 const login = async(req, res) => {
 
+  console.log(req);
+
   //Find username and retrieve hashed password
-  await model.find({userName: req.body.userName})
+  await model.find({userName: req.query.userName})
     .exec((err, user) => {
       if(!user) {
         return res.status(404).json({'message': 'user not found'});
@@ -36,7 +38,7 @@ const login = async(req, res) => {
       } else {
 
         //User found, compare the hashed password to passed in password
-        bcrypt.compare(req.body.password, user[0]['password'], function(err, result) {
+        bcrypt.compare(req.query.password, user[0]['password'], function(err, result) {
           if(err){
             return res.status(404).json(err);
           } else {

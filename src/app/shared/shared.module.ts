@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavHeaderComponent } from './components/nav-header/nav-header.component';
 import {RouterModule} from "@angular/router";
 import { LoginComponentComponent } from './components/login-component/login-component.component';
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -11,12 +12,14 @@ import { LoginComponentComponent } from './components/login-component/login-comp
     NavHeaderComponent,
     LoginComponentComponent
   ],
-  exports: [
-    NavHeaderComponent
-  ],
+    exports: [
+        NavHeaderComponent,
+        LoginComponentComponent
+    ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ]
 })
 export class SharedModule { }
