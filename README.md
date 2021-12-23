@@ -33,11 +33,11 @@ This will concurrently run the NodeJS backend API & the Angular frontend.
 
 ### Auth
 
-I'm working on implementing authentication. In order to ensure a smooth experience, you need to go into this location: 
+I'm working on implementing authentication. The project will create a random private RSA key for you located in: 
 
-`sportsmart-v3/server/keys`
+`/server/keys/private.key`
 
-And create a file called `private.key` in there. The contents can be whatever you like however authentication won't work without this. 
+Be mindful that this key is utilized for JSON web tokens. If you delete this key and create a new one, you'll likely need to go into the browser and delete the token for authentication to work. 
 
 ### Future
 
