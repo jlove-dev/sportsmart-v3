@@ -19,9 +19,7 @@ export class AuthServiceService {
       userName: userName,
       password: password
     }
-    return this.httpClient.post(`${this.loginURL}`, {params}).subscribe((response) => {
-      console.log('Registered user: ', response);
-    })
+    return this.httpClient.post(`${this.loginURL}`, {params});
   }
 
   //TODO - found something about .shareReplay() ? Interesting

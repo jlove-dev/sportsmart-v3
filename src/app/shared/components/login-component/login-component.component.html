@@ -5,6 +5,16 @@
       Welcome to Sportsmart! Please login.
     </p>
   </div>
+  <div class="row" *ngIf="this.error.getStatus() === true">
+    <p class="alert alert-danger col-md-4 offset-md-4">
+      Sorry, {{this.error.message}}
+    </p>
+  </div>
+  <div class="row" *ngIf="this.registeredUserName.length > 0">
+    <p class="alert alert-success col-md-4 offset-md-4">
+      Successfully created user: {{this.registeredUserName}}
+    </p>
+  </div>
   <div class="row">
     <div class="col-md-4 offset-md-4">
       <label for = "email">Username </label>

@@ -33,7 +33,7 @@ This will concurrently run the NodeJS backend API & the Angular frontend.
 
 ### Auth
 
-I'm working on implementing authentication. The project will create a random private RSA key for you located in: 
+I'm working on implementing authentication. The project will create a random private HMAC key for you located in: 
 
 `/server/keys/private.key`
 

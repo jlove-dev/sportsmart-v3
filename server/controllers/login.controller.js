@@ -14,15 +14,15 @@ const login = async(req, res) => {
   await model.find({userName: req.query.userName})
     .exec((err, user) => {
       if(!user) {
-        return res.status(404).json({'message': 'user not found'});
-      } else if (err) {
-        return res.status(404).json(err);
+        return res.status(404);
+      } else if ((!user) || (user.length <= 0)) {
+        return res.status(404);
       } else {
 
         //User found, compare the hashed password to passed in password
         bcrypt.compare(req.query.password, user[0]['password'], function(err, result) {
-          if(err){
-            return res.status(404).json(err);
+          if(result === false){
+            return res.status(404).json({'message': 'wrong username or password!'});
           } else {
             const jwtBearerToken = jwt.sign({}, RSA_KEY, null, {
               algorithm: 'HS256',
@@ -48,16 +48,17 @@ const createUser = async(req, res) => {
       await model.create({
         userName: req.body.params.userName,
         password: hash
-      }),
+      },
         (err, user) => {
           if (err) {
-            console.log(err);
-            return res.status(404).json(err);
+            return res.status(404).json({'message': 'user already exists!'});
+          } else if ((!user) || (user.length <= 0)) {
+            return res.status(404);
           } else {
-            return res.status(200).json(user);
+            return res.status(200).json({'success': 'Creation success'});
           }
-        };
-    });
+        }
+    )});
   });
 }
 
