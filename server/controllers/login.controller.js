@@ -2,31 +2,13 @@ const mongoose = require('mongoose');
 const model = mongoose.model('users');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const fs = require("fs");
-const crypto = require('crypto');
-const path = require('path');
+const {getKeyStatus} = require("./auth.controller");
 
 const saltRounds = 5;
 
-//Check if the private.key exists
-let checkKey = fs.existsSync(path.join(__dirname, '../keys/private.key'));
-
-//The private key for RSA doesn't exist, make a new one
-if (checkKey === false) {
-  fs.writeFileSync(path.join(__dirname, '../keys/private.key'), crypto.randomBytes(20).toString('hex'), function(err, result) {
-    if(err){
-      console.log(err);
-    } else {
-      console.log('Wrote:', result);
-    }
-  })
-}
-
-const RSA_PRIVATE_KEY = fs.readFileSync(path.join(__dirname, '../keys/private.key'));
+RSA_KEY = getKeyStatus();
 
 const login = async(req, res) => {
-
-  console.log(req);
 
   //Find username and retrieve hashed password
   await model.find({userName: req.query.userName})
@@ -42,8 +24,8 @@ const login = async(req, res) => {
           if(err){
             return res.status(404).json(err);
           } else {
-            const jwtBearerToken = jwt.sign({}, RSA_PRIVATE_KEY, null, {
-              algorithm: 'RS256',
+            const jwtBearerToken = jwt.sign({}, RSA_KEY, null, {
+              algorithm: 'HS256',
               expiresIn: 86400,
               subject: req.body.userName
             });

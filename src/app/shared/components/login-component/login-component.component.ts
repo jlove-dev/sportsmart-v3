@@ -23,7 +23,7 @@ export class LoginComponentComponent implements OnInit {
   login() {
     if (this.user.userName && this.user.password) {
       this.authService.login(this.user.userName, this.user.password).subscribe(() => {
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/home').then(r => (console.log('Successful login')));
       })
     }
   }

@@ -7,15 +7,16 @@ import {AddItemComponent} from "./modules/data-entry/components/add-item/add-ite
 import {FindVendorComponent} from "./modules/data-entry/components/find-vendor/find-vendor.component";
 import {FindItemComponent} from "./modules/point-of-sale/components/find-item/find-item.component";
 import {LoginComponentComponent} from "./shared/components/login-component/login-component.component";
+import {AuthActivate} from "./shared/services/auth-guard";
 
 const routes: Routes = [
   {path: '', component: LoginComponentComponent},
-  {path: 'add-seller', component: AddSellerComponent},
-  {path: 'add-item', component: AddItemComponent},
-  {path: 'find-vendor', component: FindVendorComponent},
-  {path: 'sell-item', component: SellItemComponent},
-  {path: 'find-item', component: FindItemComponent},
-  {path: 'home', component: HomeScreenComponent}
+  {path: 'add-seller', component: AddSellerComponent, canActivate: [AuthActivate]},
+  {path: 'add-item', component: AddItemComponent, canActivate: [AuthActivate]},
+  {path: 'find-vendor', component: FindVendorComponent, canActivate: [AuthActivate]},
+  {path: 'sell-item', component: SellItemComponent, canActivate: [AuthActivate]},
+  {path: 'find-item', component: FindItemComponent, canActivate: [AuthActivate]},
+  {path: 'home', component: HomeScreenComponent, canActivate: [AuthActivate]}
 ];
 
 @NgModule({

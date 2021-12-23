@@ -28,13 +28,13 @@ export class AuthServiceService {
   setSession(authResult: auth) {
     const expiration = moment().add(authResult.expiresIn, 'second');
 
-    localStorage.setItem('id', authResult.idToken);
-    localStorage.setItem('expires', JSON.stringify(expiration.valueOf()));
+    sessionStorage.setItem('id', authResult.idToken);
+    sessionStorage.setItem('expires', JSON.stringify(expiration.valueOf()));
   };
 
   logout() {
-    localStorage.removeItem('idToken');
-    localStorage.removeItem('expires');
+    sessionStorage.removeItem('idToken');
+    sessionStorage.removeItem('expires');
   }
 
   isLoggedOut(){
@@ -46,7 +46,7 @@ export class AuthServiceService {
   }
 
   getExpiration() {
-    const expiration = localStorage.getItem('expires');
+    const expiration = sessionStorage.getItem('expires');
     // @ts-ignore FIXME
     const expiresAt = JSON.parse(expiration);
     return moment(expiresAt);

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="checkLocation() === 'home'">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="checkLocation() === 'home' && this.authService.isLoggedIn()">
   <a class="navbar-brand" href="#">SportsMart</a>
   <div class="collapse navbar-collapse" id="homeNav">
     <ul class="navbar-nav mr-auto">
@@ -12,7 +12,7 @@
   </div>
 </nav>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="checkLocation() === 'sales'">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="checkLocation() === 'sales' && this.authService.isLoggedIn()">
   <a class="navbar-brand" href="#">SportsMart</a>
   <div class="collapse navbar-collapse" id="sellItemNav">
     <ul class="navbar-nav mr-auto">
@@ -29,7 +29,7 @@
   </div>
 </nav>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="checkLocation() === 'dataEntry'">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="checkLocation() === 'dataEntry' && this.authService.isLoggedIn()">
   <a class="navbar-brand" href="#">SportsMart</a>
   <div class="collapse navbar-collapse" id="dataEntryNav">
     <ul class="navbar-nav mr-auto">

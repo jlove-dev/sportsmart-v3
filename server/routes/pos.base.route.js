@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const items = require('./items'); //child
 
 //Import controllers
 const posController = require('../controllers/pos.controller');
+const {checkAuth} = require("../controllers/auth.controller");
 
-router.route('/').post(posController.sellItem).get(posController.getItem);
+//Routes utilize the checkAuth middleware
+router.route('/').post(checkAuth, posController.sellItem).get(checkAuth, posController.getItem);
 
 module.exports = router;
