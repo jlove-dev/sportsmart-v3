@@ -13,6 +13,9 @@ export class LoginComponentComponent implements OnInit {
   constructor(private authService: AuthServiceService, private router: Router) { }
 
   ngOnInit(): void {
+    if(this.authService.isLoggedIn()) {
+      this.router.navigateByUrl('/home').then(r => console.log('Redirect to home on refreshed session'));
+    }
   }
 
   user: user = {
@@ -28,4 +31,9 @@ export class LoginComponentComponent implements OnInit {
     }
   }
 
+  register() {
+    if (this.user.userName && this.user.password) {
+      this.authService.register(this.user.userName, this.user.password);
+      }
+    }
 }

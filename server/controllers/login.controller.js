@@ -44,9 +44,9 @@ const createUser = async(req, res) => {
 
   //salt and hash password, then create user
   bcrypt.genSalt(saltRounds, function(err, salt) {
-    bcrypt.hash(req.body.password, salt, async function (err, hash) {
+    bcrypt.hash(req.body.params.password, salt, async function (err, hash) {
       await model.create({
-        userName: req.body.userName,
+        userName: req.body.params.userName,
         password: hash
       }),
         (err, user) => {
@@ -54,7 +54,7 @@ const createUser = async(req, res) => {
             console.log(err);
             return res.status(404).json(err);
           } else {
-            return res.status(200);
+            return res.status(200).json(user);
           }
         };
     });

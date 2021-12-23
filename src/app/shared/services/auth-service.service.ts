@@ -3,15 +3,26 @@ import {HttpClient} from "@angular/common/http";
 import * as moment from 'moment';
 import {auth} from "../models/auth-class/authResponse";
 import {map} from "rxjs";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   loginURL = 'http://localhost:8000/login'
+
+  register(userName: string, password: string) {
+    let params = {
+      userName: userName,
+      password: password
+    }
+    return this.httpClient.post(`${this.loginURL}`, {params}).subscribe((response) => {
+      console.log('Registered user: ', response);
+    })
+  }
 
   //TODO - found something about .shareReplay() ? Interesting
   login(userName: string, password: string) {
@@ -33,8 +44,9 @@ export class AuthServiceService {
   };
 
   logout() {
-    sessionStorage.removeItem('idToken');
+    sessionStorage.removeItem('id');
     sessionStorage.removeItem('expires');
+    this.router.navigateByUrl('/');
   }
 
   isLoggedOut(){
