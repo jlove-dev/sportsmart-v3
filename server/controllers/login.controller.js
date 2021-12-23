@@ -4,15 +4,16 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const fs = require("fs");
 const crypto = require('crypto');
+const path = require('path');
 
 const saltRounds = 5;
 
 //Check if the private.key exists
-let checkKey = fs.existsSync('./keys/private.key');
+let checkKey = fs.existsSync(path.join(__dirname, '../keys/private.key'));
 
 //The private key for RSA doesn't exist, make a new one
-if (!checkKey) {
-  fs.writeFileSync('./keys/private.key', crypto.randomBytes(20).toString('hex'), function(err, result) {
+if (checkKey === false) {
+  fs.writeFileSync(path.join(__dirname, '../keys/private.key'), crypto.randomBytes(20).toString('hex'), function(err, result) {
     if(err){
       console.log(err);
     } else {
@@ -21,7 +22,7 @@ if (!checkKey) {
   })
 }
 
-const RSA_PRIVATE_KEY = fs.readFileSync('./keys/private.key');
+const RSA_PRIVATE_KEY = fs.readFileSync(path.join(__dirname, '../keys/private.key'));
 
 const login = async(req, res) => {
 
