@@ -14,9 +14,9 @@ const login = async(req, res) => {
   await model.find({userName: req.query.userName})
     .exec((err, user) => {
       if(!user) {
-        return res.status(404);
+        return res.status(404).json({'message': 'user doesn\'t exist!'});
       } else if ((!user) || (user.length <= 0)) {
-        return res.status(404);
+        return res.status(404).json({'message': 'user doesn\'t exist!'});
       } else {
 
         //User found, compare the hashed password to passed in password
