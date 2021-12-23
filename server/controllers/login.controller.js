@@ -7,8 +7,10 @@ const crypto = require('crypto');
 
 const saltRounds = 5;
 
+//Check if the private.key exists
 let checkKey = fs.existsSync('./keys/private.key');
 
+//The private key for RSA doesn't exist, make a new one
 if (!checkKey) {
   fs.writeFileSync('./keys/private.key', crypto.randomBytes(20).toString('hex'), function(err, result) {
     if(err){
